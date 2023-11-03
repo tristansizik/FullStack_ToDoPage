@@ -36,6 +36,18 @@ app.get("/todos", async(req,res) => {
 
 //get a todo
 
+//The :<string> indicates what to grab. Can try different strings!
+app.get("/todos/:id", async(req,res) => {
+    try {
+        const { id } = req.params;
+        const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", 
+        [id]
+        );
+        res.json(todo.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
 
 
 //update a todo
