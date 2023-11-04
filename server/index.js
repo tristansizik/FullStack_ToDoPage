@@ -58,7 +58,7 @@ app.put("/todos/:id", async(req,res) => {
         const updateTodo = await pool.query("UPDATE todo SET description = $1 WHERE todo_id = $2",
         [description, id]
         );
-        res.json("Todo $1 was updated", [id]);
+        res.json("Todo is updated");
     } catch (error) {
         console.error(error.message);
     }
